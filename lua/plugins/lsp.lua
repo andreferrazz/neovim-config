@@ -9,7 +9,11 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "tsserver" }
+                ensure_installed = {
+                    "lua_ls",
+                    "tsserver",
+                    "astro"
+                },
             })
         end
     },
@@ -19,6 +23,8 @@ return {
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup({})
             lspconfig.tsserver.setup({})
+            lspconfig.astro.setup({})
+
             local opts = {}
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
             vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
