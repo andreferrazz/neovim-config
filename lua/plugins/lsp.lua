@@ -1,6 +1,7 @@
 return {
     {
         "williamboman/mason.nvim",
+        lazy = false,
         config = function()
             require("mason").setup()
         end
@@ -12,24 +13,26 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "tsserver",
-                    "astro"
+                    "html",
                 },
             })
         end
     },
     {
         "neovim/nvim-lspconfig",
+        lazy = false,
         config = function()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({})
-            lspconfig.tsserver.setup({})
-            lspconfig.astro.setup({})
+            lspconfig.lua_ls.setup({ capabilities = capabilities })
+            lspconfig.tsserver.setup({ capabilities = capabilities })
+            lspconfig.html.setup({ capabilities = capabilities })
 
             local opts = {}
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
             vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
             vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-            vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+            vim.keymap.set('n', '<leader>qf', vim.diagnostic.setloclist) -- quickfix list
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
