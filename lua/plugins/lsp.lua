@@ -15,6 +15,7 @@ return {
 					"tsserver",
 					"html",
 					"cssls",
+                    "svelte",
 				},
 			})
 		end,
@@ -62,6 +63,7 @@ return {
 			local servers = {
 				"lua_ls",
 				"tsserver",
+                "svelte",
 				-- "html",
 				-- "cssls",
 			}
